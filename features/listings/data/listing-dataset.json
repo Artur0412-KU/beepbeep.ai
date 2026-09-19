@@ -1,0 +1,182 @@
+[
+  {
+    "listing_id": "lst_1001",
+    "year": 2021,
+    "brand": "Toyota",
+    "model": "Camry",
+    "origin": "USA",
+    "mileage": 42000,
+    "body_type": "sedan",
+    "fuel_type": "petrol",
+    "price": 23900,
+    "currency": "USD",
+    "navigate_link": "https://example.com/listings/lst_1001",
+    "features": ["adaptive_cruise_control", "heated_seats", "rear_camera"],
+    "img_array": [
+      "https://images.example.com/listings/lst_1001/front.jpg",
+      "https://images.example.com/listings/lst_1001/interior.jpg"
+    ]
+  },
+  {
+    "listing_id": "lst_1002",
+    "year": 2020,
+    "brand": "Volkswagen",
+    "model": "Tiguan",
+    "origin": "Germany",
+    "mileage": 51500,
+    "body_type": "suv",
+    "fuel_type": "diesel",
+    "price": 26750,
+    "currency": "EUR",
+    "navigate_link": "https://example.com/listings/lst_1002",
+    "features": ["four_wheel_drive", "parking_sensors", "apple_carplay"],
+    "img_array": [
+      "https://images.example.com/listings/lst_1002/front.jpg",
+      "https://images.example.com/listings/lst_1002/rear.jpg"
+    ]
+  },
+  {
+    "listing_id": "lst_1003",
+    "year": 2022,
+    "brand": "Tesla",
+    "model": "Model 3",
+    "origin": "USA",
+    "mileage": 18500,
+    "body_type": "sedan",
+    "fuel_type": "electric",
+    "price": 31900,
+    "currency": "USD",
+    "navigate_link": "https://example.com/listings/lst_1003",
+    "features": ["autopilot", "panoramic_roof", "fast_charging"],
+    "img_array": [
+      "https://images.example.com/listings/lst_1003/front.jpg",
+      "https://images.example.com/listings/lst_1003/dashboard.jpg"
+    ]
+  },
+  {
+    "listing_id": "lst_1004",
+    "year": 2019,
+    "brand": "BMW",
+    "model": "X3",
+    "origin": "Germany",
+    "mileage": 68400,
+    "body_type": "suv",
+    "fuel_type": "petrol",
+    "price": 28900,
+    "currency": "EUR",
+    "navigate_link": "https://example.com/listings/lst_1004",
+    "features": ["leather_interior", "sunroof", "navigation_system"],
+    "img_array": [
+      "https://images.example.com/listings/lst_1004/front.jpg",
+      "https://images.example.com/listings/lst_1004/interior.jpg"
+    ]
+  },
+  {
+    "listing_id": "lst_1005",
+    "year": 2023,
+    "brand": "Hyundai",
+    "model": "Tucson",
+    "origin": "South Korea",
+    "mileage": 9200,
+    "body_type": "suv",
+    "fuel_type": "hybrid",
+    "price": 30500,
+    "currency": "USD",
+    "navigate_link": "https://example.com/listings/lst_1005",
+    "features": ["lane_assist", "heated_steering_wheel", "blind_spot_monitor"],
+    "img_array": [
+      "https://images.example.com/listings/lst_1005/front.jpg",
+      "https://images.example.com/listings/lst_1005/side.jpg"
+    ]
+  },
+  {
+    "listing_id": "lst_1006",
+    "year": 2018,
+    "brand": "Honda",
+    "model": "Civic",
+    "origin": "Japan",
+    "mileage": 73300,
+    "body_type": "hatchback",
+    "fuel_type": "petrol",
+    "price": 17400,
+    "currency": "USD",
+    "navigate_link": "https://example.com/listings/lst_1006",
+    "features": ["rear_camera", "keyless_entry", "bluetooth"],
+    "img_array": [
+      "https://images.example.com/listings/lst_1006/front.jpg",
+      "https://images.example.com/listings/lst_1006/interior.jpg"
+    ]
+  },
+  {
+    "listing_id": "lst_1007",
+    "year": 2021,
+    "brand": "Skoda",
+    "model": "Octavia",
+    "origin": "Czech Republic",
+    "mileage": 39700,
+    "body_type": "wagon",
+    "fuel_type": "diesel",
+    "price": 21400,
+    "currency": "EUR",
+    "navigate_link": "https://example.com/listings/lst_1007",
+    "features": ["adaptive_cruise_control", "heated_seats", "large_luggage_space"],
+    "img_array": [
+      "https://images.example.com/listings/lst_1007/front.jpg",
+      "https://images.example.com/listings/lst_1007/cargo.jpg"
+    ]
+  },
+  {
+    "listing_id": "lst_1008",
+    "year": 2022,
+    "brand": "Ford",
+    "model": "Mustang Mach-E",
+    "origin": "USA",
+    "mileage": 22100,
+    "body_type": "crossover",
+    "fuel_type": "electric",
+    "price": 38900,
+    "currency": "USD",
+    "navigate_link": "https://example.com/listings/lst_1008",
+    "features": ["all_wheel_drive", "wireless_charging", "panoramic_roof"],
+    "img_array": [
+      "https://images.example.com/listings/lst_1008/front.jpg",
+      "https://images.example.com/listings/lst_1008/charging.jpg"
+    ]
+  },
+  {
+    "listing_id": "lst_1009",
+    "year": 2017,
+    "brand": "Mercedes-Benz",
+    "model": "E-Class",
+    "origin": "Germany",
+    "mileage": 88900,
+    "body_type": "sedan",
+    "fuel_type": "diesel",
+    "price": 22600,
+    "currency": "EUR",
+    "navigate_link": "https://example.com/listings/lst_1009",
+    "features": ["leather_interior", "parking_assist", "navigation_system"],
+    "img_array": [
+      "https://images.example.com/listings/lst_1009/front.jpg",
+      "https://images.example.com/listings/lst_1009/interior.jpg"
+    ]
+  },
+  {
+    "listing_id": "lst_1010",
+    "year": 2020,
+    "brand": "Renault",
+    "model": "Zoe",
+    "origin": "France",
+    "mileage": 27600,
+    "body_type": "hatchback",
+    "fuel_type": "electric",
+    "price": 15900,
+    "currency": "EUR",
+    "navigate_link": "https://example.com/listings/lst_1010",
+    "features": ["city_driving_assist", "fast_charging", "rear_camera"],
+    "img_array": [
+      "https://images.example.com/listings/lst_1010/front.jpg",
+      "https://images.example.com/listings/lst_1010/dashboard.jpg"
+    ]
+  }
+]

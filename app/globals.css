@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scrollbar-gutter: stable;
+  }
+
+  :root {
+    --background: 60 20% 95%;
+    --foreground: 145 18% 11%;
+    --ink: 145 18% 13%;
+    --muted: 150 7% 47%;
+    --paper: 60 20% 95%;
+    --card: 54 100% 99%;
+    --accent: 72 70% 54%;
+    --accent-soft: 80 29% 92%;
+    --hero-muted: 132 12% 75%;
+    --hero-border: 135 11% 36%;
+    --border: 135 14% 88%;
+    --input: 135 14% 88%;
+    --ring: 72 70% 35%;
+    --radius: 0.75rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply min-h-screen bg-paper font-sans text-foreground antialiased;
+  }
+}

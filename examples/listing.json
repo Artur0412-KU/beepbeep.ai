@@ -1,0 +1,15 @@
+{
+  "listing_id": "string",
+  "year": 2020,
+  "brand": "string",
+  "model": "string",
+  "origin": "string",
+  "mileage": 50000,
+  "body_type": "string",
+  "fuel_type": "string",
+  "price": 0,
+  "currency": "string",
+  "navigate_link": "string",
+  "features": ["string"],
+  "img_array": ["string"]
+}
