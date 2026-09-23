@@ -4,6 +4,7 @@ import { z } from "zod";
 import { randomUUID } from "crypto";
 import { NextResponse } from "next/server";
 import listings from "@/features/listings/data/listing-dataset.json";
+import { translateBodyType, translateFuelType } from "@/features/listings/labels";
 
 const searchContextSchema = z.object({
   extracted_make_model: z.string().nullable(),
@@ -77,8 +78,8 @@ function matchesSearchContext(listing: (typeof listings)[number], filters: z.inf
     (filters.price_max === null || listing.price <= filters.price_max) &&
     (filters.year_min === null || listing.year >= filters.year_min) &&
     (filters.mileage_max === null || listing.mileage <= filters.mileage_max) &&
-    (!filters.fuel_type || normalize(listing.fuel_type) === normalize(filters.fuel_type)) &&
-    (!filters.body_type || normalize(listing.body_type) === normalize(filters.body_type)) &&
+    (!filters.fuel_type || normalize(translateFuelType(listing.fuel_type)) === normalize(filters.fuel_type)) &&
+    (!filters.body_type || normalize(translateBodyType(listing.body_type)) === normalize(filters.body_type)) &&
     (!filters.location || normalize(listing.origin).includes(normalize(filters.location))) &&
     requestedFeatures.every((requestedFeature) => listingFeatures.some((feature) => feature.includes(requestedFeature) || requestedFeature.includes(feature)))
   );

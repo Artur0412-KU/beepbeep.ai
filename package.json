@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "scrape:listings": "node features/listings/scripts/scrape-listings.mjs"
   },
   "dependencies": {
     "@google/genai": "^2.23.0",
