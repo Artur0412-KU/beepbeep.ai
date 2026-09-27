@@ -6,6 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { WishlistButton } from "@/features/wishlist/components/wishlist-button";
 import type { Listing } from "@/features/listings/types";
+import { translateBodyType } from "@/features/listings/labels";
 
 const formatPrice = (price: number, currency: string) =>
   new Intl.NumberFormat("en-US", {
@@ -24,19 +25,28 @@ export function ListingCard({
   const listingQuery = conversationId
     ? `?conversationId=${encodeURIComponent(conversationId)}`
     : "?restore=listing";
+  const image = listing.img_array[0];
 
   return (
     <Card className="overflow-hidden border-border bg-card">
       <div className="relative flex h-[180px] items-center justify-center bg-[#dce9d9]">
+        {image ? (
+          <img
+            src={image}
+            alt={`${listing.brand} ${listing.model}`}
+            className="h-full w-full object-cover"
+          />
+        ) : (
+          <div className="flex h-[118px] w-[118px] items-center justify-center rounded-full bg-ink font-display text-[78px] font-bold leading-none text-accent">
+            {listing.brand.slice(0, 1)}
+          </div>
+        )}
         <Badge
           variant="secondary"
           className="absolute left-3.5 top-3.5 capitalize"
         >
-          {listing.body_type}
+          {translateBodyType(listing.body_type)}
         </Badge>
-        <div className="flex h-[118px] w-[118px] items-center justify-center rounded-full bg-ink font-display text-[78px] font-bold leading-none text-accent">
-          {listing.brand.slice(0, 1)}
-        </div>
       </div>
       <CardContent className="p-5">
         <div className="flex items-start justify-between gap-3">

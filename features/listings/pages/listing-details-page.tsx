@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+import { translateBodyType, translateFuelType } from "@/features/listings/labels";
 
 import type { Listing } from "@/features/listings/types";
 
@@ -43,7 +44,7 @@ export default function ListingPage({
             <div className="flex items-start justify-between gap-4">
               <div>
                 <Badge variant="secondary" className="mb-3 capitalize">
-                  {listing.body_type}
+                  {translateBodyType(listing.body_type)}
                 </Badge>
                 <p className="text-sm text-muted">
                   {listing.year} · {listing.origin}
@@ -68,13 +69,13 @@ export default function ListingPage({
                 <span className="block text-xs uppercase tracking-wide text-muted">
                   Fuel type
                 </span>
-                <strong className="capitalize">{listing.fuel_type}</strong>
+                <strong className="capitalize">{translateFuelType(listing.fuel_type)}</strong>
               </div>
               <div>
                 <span className="block text-xs uppercase tracking-wide text-muted">
                   Body type
                 </span>
-                <strong className="capitalize">{listing.body_type}</strong>
+                <strong className="capitalize">{translateBodyType(listing.body_type)}</strong>
               </div>
               <div>
                 <span className="block text-xs uppercase tracking-wide text-muted">
