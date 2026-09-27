@@ -2,12 +2,16 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { UserRound } from "lucide-react";
+import { Menu, UserRound } from "lucide-react";
 import { AuthDialog, type AuthMode } from "@/features/auth/components/auth-dialog";
 import { useAuth } from "@/features/auth/providers/auth-provider";
 import { Button, buttonVariants } from "@/components/ui/button";
 
-export function AuthHeader() {
+type AuthHeaderProps = {
+  onOpenConversations?: () => void;
+};
+
+export function AuthHeader({ onOpenConversations }: AuthHeaderProps) {
   const { user, signOut } = useAuth();
   const [mode, setMode] = useState<AuthMode>("sign-in");
   const [open, setOpen] = useState(false);
@@ -31,6 +35,18 @@ export function AuthHeader() {
           beepbeep<span className="text-[#66891a]">.ai</span>
         </div>
         <div className="flex items-center gap-2">
+          {onOpenConversations && (
+            <Button
+              variant="ghost"
+              size="icon"
+              className="md:hidden"
+              aria-label="Open conversations"
+              title="Conversations"
+              onClick={onOpenConversations}
+            >
+              <Menu className="h-4 w-4" />
+            </Button>
+          )}
           {user ? (
             <>
               <Link

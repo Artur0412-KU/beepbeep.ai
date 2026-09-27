@@ -14,7 +14,17 @@ const formatPrice = (price: number, currency: string) =>
     maximumFractionDigits: 0,
   }).format(price);
 
-export function ListingCard({ listing }: { listing: Listing }) {
+export function ListingCard({
+  listing,
+  conversationId,
+}: {
+  listing: Listing;
+  conversationId?: string | null;
+}) {
+  const listingQuery = conversationId
+    ? `?conversationId=${encodeURIComponent(conversationId)}`
+    : "?restore=listing";
+
   return (
     <Card className="overflow-hidden border-border bg-card">
       <div className="relative flex h-[180px] items-center justify-center bg-[#dce9d9]">
@@ -35,7 +45,7 @@ export function ListingCard({ listing }: { listing: Listing }) {
               {listing.year} · {listing.origin}
             </p>
             <Link
-              href={`/listing/${listing.listing_id}`}
+              href={`/listing/${listing.listing_id}${listingQuery}`}
               className="font-display text-[22px] font-semibold tracking-[-0.04em] hover:text-[#66891a]"
             >
               {listing.brand} {listing.model}
@@ -48,7 +58,7 @@ export function ListingCard({ listing }: { listing: Listing }) {
         <div className="flex w-1/4 flex-col items-start">
           <WishlistButton listingId={listing.listing_id} />
           <Link
-            href={`/listing/${listing.listing_id}`}
+            href={`/listing/${listing.listing_id}${listingQuery}`}
             className={cn(
               buttonVariants({ variant: "ghost" }),
               "mt-4 h-auto gap-2 px-0 py-0 text-ink hover:bg-transparent hover:text-ink",

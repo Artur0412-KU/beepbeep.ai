@@ -1,9 +1,9 @@
-import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import listings from "@/features/listings/data/listing-dataset.json";
 import { AuthHeader } from "@/features/auth/components/auth-header";
 import { ListingCarousel } from "@/features/listings/components/listing-carousel";
+import { BackToSearchButton } from "@/features/listings/components/back-to-search-button";
 import { WishlistButton } from "@/features/wishlist/components/wishlist-button";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
@@ -32,12 +32,7 @@ export default function ListingPage({
   return (
     <main className="mx-auto max-w-[1240px] px-4 py-4 sm:px-7 sm:py-8">
       <AuthHeader />
-      <Link
-        href="/"
-        className="mb-6 inline-flex items-center gap-2 text-sm font-semibold text-muted hover:text-ink"
-      >
-        <ArrowLeft className="h-4 w-4" /> Back to search
-      </Link>
+      <BackToSearchButton />
       <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
         <ListingCarousel
           images={listing.img_array}
