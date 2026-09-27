@@ -1,21 +1,12 @@
 import { GoogleGenAI } from "@google/genai";
 import { createClient } from "@supabase/supabase-js";
-import { z } from "zod";
 import { randomUUID } from "crypto";
 import { NextResponse } from "next/server";
 import listings from "@/features/listings/data/listing-dataset.json";
-import { translateBodyType, translateFuelType } from "@/features/listings/labels";
-
-const searchContextSchema = z.object({
-  extracted_make_model: z.string().nullable(),
-  price_max: z.number().nullable(),
-  year_min: z.number().nullable(),
-  mileage_max: z.number().nullable(),
-  fuel_type: z.string().nullable(),
-  body_type: z.string().nullable(),
-  parsed_features: z.array(z.string()),
-  location: z.string().nullable()
-});
+import {
+  matchesSearchContext,
+  searchContextSchema,
+} from "@/features/search/lib/search-context";
 
 const searchContextJsonSchema = {
   type: "object",
@@ -33,7 +24,6 @@ const searchContextJsonSchema = {
   additionalProperties: false
 };
 
-const normalize = (value: string) => value.toLowerCase().replace(/[_-]/g, " ").replace(/\s+/g, " ").trim();
 const anonymousSearchCookie = "anonymous_search_used";
 
 async function getAuthenticatedUser(request: Request) {
@@ -51,38 +41,22 @@ async function getAuthenticatedUser(request: Request) {
 async function saveConversation(userId: string, token: string, prompt: string, aiResponseText: string) {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const key = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
-  if (!url || !key) return false;
+  if (!url || !key) return null;
+
+  const conversationId = randomUUID();
 
   const supabase = createClient(url, key, {
     auth: { autoRefreshToken: false, persistSession: false },
     global: { headers: { Authorization: `Bearer ${token}` } }
   });
   const { error } = await supabase.from("conversations").insert({
-    conversation_id: randomUUID(),
+    conversation_id: conversationId,
     user_id: userId,
     turn_index: 1,
     raw_user_prompt: prompt,
     ai_response_text: aiResponseText
   });
-  return !error;
-}
-
-function matchesSearchContext(listing: (typeof listings)[number], filters: z.infer<typeof searchContextSchema>) {
-  const vehicleName = normalize(`${listing.brand} ${listing.model}`);
-  const requestedVehicle = filters.extracted_make_model ? normalize(filters.extracted_make_model) : "";
-  const requestedFeatures = filters.parsed_features.map(normalize);
-  const listingFeatures = listing.features.map(normalize);
-
-  return (
-    (!requestedVehicle || vehicleName.includes(requestedVehicle) || requestedVehicle.includes(vehicleName)) &&
-    (filters.price_max === null || listing.price <= filters.price_max) &&
-    (filters.year_min === null || listing.year >= filters.year_min) &&
-    (filters.mileage_max === null || listing.mileage <= filters.mileage_max) &&
-    (!filters.fuel_type || normalize(translateFuelType(listing.fuel_type)) === normalize(filters.fuel_type)) &&
-    (!filters.body_type || normalize(translateBodyType(listing.body_type)) === normalize(filters.body_type)) &&
-    (!filters.location || normalize(listing.origin).includes(normalize(filters.location))) &&
-    requestedFeatures.every((requestedFeature) => listingFeatures.some((feature) => feature.includes(requestedFeature) || requestedFeature.includes(feature)))
-  );
+  return error ? null : conversationId;
 }
 
 export async function POST(request: Request) {
@@ -114,9 +88,14 @@ export async function POST(request: Request) {
 
     const filters = searchContextSchema.parse(JSON.parse(response.text));
     const matchingListings = listings.filter((listing) => matchesSearchContext(listing, filters));
-    const conversationSaved = user ? await saveConversation(user.id, token, prompt, response.text) : false;
+    const conversationId = user ? await saveConversation(user.id, token, prompt, response.text) : null;
+    const conversationSaved = Boolean(conversationId);
 
-    const result = NextResponse.json({ listings: matchingListings, conversationSaved });
+    const result = NextResponse.json({
+      listings: matchingListings,
+      conversationSaved,
+      conversationId,
+    });
     if (!user) {
       result.cookies.set(anonymousSearchCookie, "1", {
         httpOnly: true,
